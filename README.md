@@ -1,6 +1,6 @@
 # Final_Master_Project
 
-Create a new environment in python with the command: create -n rasa python=3.6 anaconda. 
+Create a new environment in python with the command: create -n rasa python=3.6 anaconda. </br>
 Activate the environemt: conda activate rasa
 Install Rasa through pip: pip install rasa-x --extra-index-url https://pypi.rasa.com/simple
 Download file: git clone https://github.com/blueberrykary/Final_Master_Project/
