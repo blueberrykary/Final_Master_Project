@@ -11,5 +11,5 @@ with open('/home/blueberrykary/scraper/plist', 'r') as my_file:
     text = re.sub("\d+", " ", text)
 
 # Created new file to replace previous list
-with open('/home/blueberrykary/ourfirstscraper/replace1.txt', 'w') as my_file:
+with open('/home/blueberrykary/scraper/replace1.txt', 'w') as my_file:
     my_file.write(text)
