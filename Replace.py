@@ -1,6 +1,6 @@
 import re
 
-with open('/home/blueberrykary/ourfirstscraper/plist', 'r') as my_file:
+with open('/home/blueberrykary/scraper/plist', 'r') as my_file:
     text = my_file.read()
     text = text.replace("[", "")
     text = text.replace("]", "")
