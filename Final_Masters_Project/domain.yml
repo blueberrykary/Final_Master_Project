@@ -1,0 +1,76 @@
+session_config:
+  session_expiration_time: 60.0
+  carry_over_slots_to_new_session: true
+intents:
+- greet
+- goodbye
+- affirm
+- deny
+- mood_great
+- mood_unhappy
+- bot_challenge
+- current_student
+- future_student
+- instructor
+- search_student_one
+- search_student_two
+- search_instruct
+entities:
+- stud_one
+- student_num_one
+- stud_two
+- instruct
+- student_num_two
+- instruct_one
+slots:
+  instruct:
+    type: text
+  instruct_one:
+    type: text
+  stud_one:
+    type: text
+  stud_two:
+    type: text
+  student_num_one:
+    type: text
+  student_num_two:
+    type: text
+responses:
+  utter_greet:
+  - text: Welcome to CSUDH. I am CSUDHBot, here to help with information that you may need. Which of the following applies to you?
+    buttons:
+    - title: Current Student
+      payload: /current_student{"stud_one":"current student"}
+    - title: Future Student
+      payload: /future_student{"stud_two":"future student"}
+    - title: Instructor
+      payload: /instructor{"instruct":"teacher"}
+  utter_next:
+    - text: Please select one of the following options.
+  utter_cheer_up:
+  - text: 'Here is something to cheer you up:'
+    image: https://i.imgur.com/nGF1K8f.jpg
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_happy:
+  - text: Great, carry on!
+  utter_goodbye:
+  - text: Bye
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_view:
+  - text: one
+  - text: two
+  - text: three
+actions:
+- utter_greet
+- utter_cheer_up
+- utter_did_that_help
+- utter_happy
+- utter_goodbye
+- utter_iamabot
+- utter_view
+- action_search_student_one
+- action_search_student_two
+- action_search_instruct
+- utter_next
