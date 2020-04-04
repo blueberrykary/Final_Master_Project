@@ -103,3 +103,32 @@ class ActionGoBack4(Action):
             dispatcher.utter_message("You are now going to the {}. Redirecting you to {}".format(link4, redirected4))
 
             return[SlotSet("link4", redirected4)]
+
+
+class ActionGoBack5(Action):
+    def name(self) -> Text:
+        return "action_goback5"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+            link5 = tracker.get_slot("link5")
+            redirected5 = "https://my.csudh.edu/psp/paaprd/EMPLOYEE/CDHPRD/c/DH_SA_CUSTOM.DH_SR_CLASS_SRCH.GBL?"
+            dispatcher.utter_message("You are now being redirected to view the {} through {}.".format(link5, redirected5))
+
+            return[SlotSet("link5", redirected5)]
+
+class ScheduleAppt(Action):
+    def name(self) -> Text:
+        return "action_schedule_appt"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+            Appt = tracker.get_slot("Appt")
+            sched_appointment = "scheduling an appointment"
+            dispatcher.utter_message("You will now go to {} in your designated department ".format(sched_appointment))
+
+            return[SlotSet("sched_appointment", sched_appointment)]

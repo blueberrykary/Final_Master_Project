@@ -20,6 +20,8 @@ intents:
 - links2
 - links3
 - links4
+- links5
+- schedule_appointment
 
 entities:
 - stud_one
@@ -38,6 +40,10 @@ entities:
 - redirected3
 - link4
 - redirected4
+- link5
+- redirected5
+- sched_appointment
+- Appt
 
 slots:
   go:
@@ -70,6 +76,14 @@ slots:
     type: text
   redirected4:
     type: text
+  link5:
+    type: text
+  redirected5:
+    type: text
+  Appt:
+    type: text
+  sched_appointment:
+    type: text
 
 responses:
   utter_greet:
@@ -93,8 +107,14 @@ responses:
       payload: /links3{"link3":"Blackboard"}
     - title: Academic Calendar
       payload: /links4{"link4":"Academic Calendar"}
-    - title: Go Back 
+    - title: Class Schedule
+      payload: /links5{"link5":"Class Schedule"}
+    - title: Schedule Appointment
+      payload: /schedule_appointment{"Appt":"Schedule"}
+    - title: Go Back
       payload: /greet
+  utter_schedule:
+  - text: schedule your appointments here
   utter_cheer_up:
   - text: 'Here is something to cheer you up:'
     image: https://i.imgur.com/nGF1K8f.jpg
@@ -126,3 +146,6 @@ actions:
 - action_goback2
 - action_goback3
 - action_goback4
+- action_goback5
+- utter_schedule
+- action_schedule_appt
