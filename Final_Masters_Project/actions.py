@@ -46,3 +46,60 @@ class ActionSearchUserThree(Action):
             dispatcher.utter_message("This is the {}:{}".format(user_three, instruct_one))
 
             return[SlotSet("instruct_one", instruct_one)]
+
+class ActionGoBack(Action):
+    def name(self) -> Text:
+        return "action_goback"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+            link = tracker.get_slot("link")
+            redirected = "https://www.my.csudh.edu"
+            dispatcher.utter_message("You have chosen {}, redirecting you to {}".format(link, redirected))
+
+            return[SlotSet("link", redirected)]
+
+class ActionGoBack2(Action):
+    def name(self) -> Text:
+        return "action_goback2"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+            link2 = tracker.get_slot("link2")
+            redirected2 = "http://toromail.csudh.edu/"
+            dispatcher.utter_message("You have chosen {}, redirecting you to {}.Make sure to enter your CSUDH username and password".format(link2, redirected2))
+
+            return[SlotSet("link2", redirected2)]
+
+
+class ActionGoBack3(Action):
+    def name(self) -> Text:
+        return "action_goback3"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+            link3 = tracker.get_slot("link3")
+            redirected3 = "https://toro.csudh.edu/webapps/login/"
+            dispatcher.utter_message("You have chosen {}, redirecting you to {}.".format(link3, redirected3))
+
+            return[SlotSet("link3", redirected3)]
+
+class ActionGoBack4(Action):
+    def name(self) -> Text:
+        return "action_goback4"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+            link4 = tracker.get_slot("link4")
+            redirected4 = "https://www.csudh.edu/Assets/csudh-sites/academic-affairs/academic-calendar/docs/CSUDH_approved_academic_calendar_2019_2020.pdf"
+            dispatcher.utter_message("You are now going to the {}. Redirecting you to {}".format(link4, redirected4))
+
+            return[SlotSet("link4", redirected4)]

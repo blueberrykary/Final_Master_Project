@@ -1,10 +1,10 @@
-## searching for student 1
-* greet
+## go back to search for student 1
+* go_back
   - utter_greet
-* search_student_one{"stud_one":"current student"}
-  - action_search_student_one
-  - slot{"student_num_one":"Current Student"}
-  - utter_next
+  <!-- - utter_next -->
+<!-- * go_back{"back":"go"}
+  - action_goback
+  - slot{"go":"go"} -->
 
 ## search for student 2
 * greet

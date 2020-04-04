@@ -15,6 +15,12 @@ intents:
 - search_student_one
 - search_student_two
 - search_instruct
+- go_back
+- links
+- links2
+- links3
+- links4
+
 entities:
 - stud_one
 - student_num_one
@@ -22,7 +28,20 @@ entities:
 - instruct
 - student_num_two
 - instruct_one
+- go
+- back
+- link
+- redirected
+- link2
+- redirected2
+- link3
+- redirected3
+- link4
+- redirected4
+
 slots:
+  go:
+    type: text
   instruct:
     type: text
   instruct_one:
@@ -35,9 +54,27 @@ slots:
     type: text
   student_num_two:
     type: text
+  link:
+    type: text
+  redirected:
+    type: text
+  link2:
+    type: text
+  redirected2:
+    type: text
+  link3:
+    type: text
+  redirected3:
+    type: text
+  link4:
+    type: text
+  redirected4:
+    type: text
+
 responses:
   utter_greet:
-  - text: Welcome to CSUDH. I am CSUDHBot, here to help with information that you may need. Which of the following applies to you?
+  - text: Welcome to CSUDH. I am CSUDHBot, here to help with information that you
+      may need. Which of the following applies to you?
     buttons:
     - title: Current Student
       payload: /current_student{"stud_one":"current student"}
@@ -46,7 +83,18 @@ responses:
     - title: Instructor
       payload: /instructor{"instruct":"teacher"}
   utter_next:
-    - text: Please select one of the following options.
+  - text: Which of the following would you like to navigate?
+    buttons:
+    - title: MyCSUDH
+      payload: /links{"link":"current student"}
+    - title: Student Email
+      payload: /links2{"link2":"current student"}
+    - title: Blackboard
+      payload: /links3{"link3":"Blackboard"}
+    - title: Academic Calendar
+      payload: /links4{"link4":"Academic Calendar"}
+    - title: Go Back 
+      payload: /greet
   utter_cheer_up:
   - text: 'Here is something to cheer you up:'
     image: https://i.imgur.com/nGF1K8f.jpg
@@ -74,3 +122,7 @@ actions:
 - action_search_student_two
 - action_search_instruct
 - utter_next
+- action_goback
+- action_goback2
+- action_goback3
+- action_goback4

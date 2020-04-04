@@ -75,6 +75,21 @@
 ## intent: search_instruct
 - [teacher](instruct)
 
+## intent: go_back
+- [go](back)
+
+## intent: links
+- [current student](link)
+
+## intent: links2
+- [current student](link2)
+
+## intent: links3
+- [Blackboard](link3)
+
+## intent: links4
+- [Academic Calendar](link4)
+
 ## intent:goodbye
 - bye
 - goodbye
