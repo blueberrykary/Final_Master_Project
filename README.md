@@ -17,6 +17,9 @@ Chatbot Widget
 > `pip install rasa-x --extra-index-url https://pypi.rasa.com/simple` 
 ## <br> Download file:
 > <br> `git clone https://github.com/blueberrykary/Final_Master_Project` 
-Run file under the rasa environment and train data: rasa train</br>
-Run the trained data: rasa run actions & rasa shell </br>
-After running trained data, you can interact with the pre-prototype. </br>
+## To train model: 
+> <br> rasa train
+## Run the train program through the server and command line (and web browser locally):
+> rasa run actions & rasa shell 
+
+
