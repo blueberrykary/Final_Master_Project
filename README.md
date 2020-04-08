@@ -1,7 +1,16 @@
 # Final_Master_Project
+### Technology Requirements:
+```
+Anaconda-Navigator with Python 3.6
+PostgreSQL
+IDE, Atom
+RasaX
+Chatbot Widget
+```
 
-## Create a new environment in python with the command:
-> <br> create -n rasa python=3.6 anaconda. 
+
+## Create a new environment in Anaconda-Navigator with the following command:
+> <br> create -n rasa python=3.6 anaconda
 ## <br> Activate the environemt:
 > conda activate rasa 
 ## Install Rasa through pip: 
