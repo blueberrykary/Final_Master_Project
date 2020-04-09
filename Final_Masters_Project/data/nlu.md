@@ -90,6 +90,23 @@
 ## intent: links4
 - [Academic Calendar](link4)
 
+## intent: links5
+- [Class Schedule](link5)
+
+## intent: schedule_appointment
+- [Schedule](Appt)
+
+## intent: University
+- [Universe](school)
+
+## intent: By_Major
+- [Major](school)
+
+<!-- ## intent: CompSci
+- [Computer Science](Appt)  -->
+<!-- ## intent: back
+- [going](back)
+
 ## intent:goodbye
 - bye
 - goodbye

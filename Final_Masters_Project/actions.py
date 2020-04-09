@@ -56,7 +56,7 @@ class ActionGoBack(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
             link = tracker.get_slot("link")
-            redirected = "https://www.my.csudh.edu"
+            redirected = "https://my.csudh.edu/psp/paaprd/EMPLOYEE/EMPL/h/?tab=PAPP_GUEST"
             dispatcher.utter_message("You have chosen {}, redirecting you to {}".format(link, redirected))
 
             return[SlotSet("link", redirected)]
@@ -119,7 +119,7 @@ class ActionGoBack5(Action):
 
             return[SlotSet("link5", redirected5)]
 
-class ScheduleAppt(Action):
+class ActionScheduleAppt(Action):
     def name(self) -> Text:
         return "action_schedule_appt"
 
@@ -132,3 +132,76 @@ class ScheduleAppt(Action):
             dispatcher.utter_message("You will now go to {} in your designated department ".format(sched_appointment))
 
             return[SlotSet("sched_appointment", sched_appointment)]
+
+
+#===================================================================================#
+#==============================Actions for Scheduling Appointment===================#
+
+class ActionUni(Action):
+
+    def name(self) -> Text:
+        return "action_schedule_university"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+            uni = tracker.get_slot("school")
+            universities = "University"
+            dispatcher.utter_message("You selected that you are a {} at CSUDH".format(universities))
+
+            return[SlotSet("uni", universities)]
+
+
+class Action_ByMajor(Action):
+
+    def name(self) -> Text:
+        return "action_schedule_major"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+            major = tracker.get_slot("By_Major")
+            by_maj = "Major"
+            dispatcher.utter_message("You selected that you are a {} at CSUDH".format(by_maj))
+
+            return[SlotSet("major", by_maj)]
+
+#==================Link with CompScie=====================#
+
+# class Action_CompSci(Action):
+#
+#     def name(self) -> Text:
+#         return "action_compsci"
+#
+#     def run(self, dispatcher: CollectingDispatcher,
+#             tracker: Tracker,
+#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+#
+#         #dispatcher.utter_message(text="Hello World!")
+#         dispatcher.utter_message(attachment={
+#             "type": "link",
+#             "payload": {
+#                 "title": "Computer Science",
+#                 "src": "https://cscadv.csudh.edu/"
+#             }
+#         })
+
+
+#===== fix the go back button for going to utter_next =====#
+#
+# class Action_GoToUtterNext(Action):
+#
+#     def name(self) -> Text:
+#         return "action_goto_utternext"
+#
+#     def run(self, dispatcher: CollectingDispatcher,
+#             tracker: Tracker,
+#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+#
+#             toUtterNext = tracker.get_slot("back")
+#             back_to_UtterNext = "Going back to utter_next"
+#             dispatcher.utter_message("You selected that you are a {} at CSUDH".format(toUtterNext))
+#
+#             return[SlotSet("toUtterNext", back_to_UtterNext)]
