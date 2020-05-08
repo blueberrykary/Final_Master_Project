@@ -1,4 +1,6 @@
-# Connect to PostgreSQL database
+## Karen Salinas
+## CSC 590
+# Connect to PostgreSQL database called 'masterdb'
 import psycopg2
 import traceback
 
@@ -6,7 +8,7 @@ def getData(query:str):
     try:
         mydb = psycopg2.connect(
         host = "localhost",
-        database = "api",
+        database = "masterdb",
         user = "postgres",
         password = "Ks126352"
         )

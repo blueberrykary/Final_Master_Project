@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Rasa Core Visualisation</title>
+    <script src="https://dagrejs.github.io/project/dagre-d3/latest/dagre-d3.min.js"></script>
+    <script src="https://dagrejs.github.io/project/dagre/latest/dagre.min.js"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://dagrejs.github.io/project/graphlib-dot/v0.6.3/graphlib-dot.js"></script>
+</head>
+<body>
+<div id="errormsg" style="color: #b00"></div>
+<svg>
+    <style>
+        .node.invisible > rect {
+            display: none;
+        }
+
+        .node.start > rect {
+            fill: #7f7;
+            rx: 30;
+            ry: 18;
+        }
+
+        .node.end > rect {
+            fill: #f77;
+            rx: 30;
+            ry: 18;
+        }
+
+        .node:not(.active) > rect, .node:not(.active) > .label {
+            opacity: 0.4;
+        }
+
+        .edgePath:not(.active) path {
+            opacity: 0.4;
+        }
+
+        .node.ellipsis > rect {
+            fill: #CCC;
+        }
+
+        .node.intent > rect {
+            fill: #7ff;
+        }
+
+        .node.dashed > rect {
+            stroke-dasharray: 5;
+        }
+
+        text {
+            font-weight: 300;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serf, serif;
+            font-size: 14px;
+            color: #1f1d1d;
+        }
+
+        .node rect {
+            stroke: #444;
+            fill: #fff;
+            stroke-width: 1.5px;
+        }
+
+        .edgePath path {
+            stroke: #333;
+            stroke-width: 1.5px;
+        }
+
+        svg {
+            position: fixed;
+            top: 10px;
+            left: 0;
+            height: 100%;
+            width: 100%
+        }
+    </style>
+    <g></g>
+</svg>
+<script>
+
+  function serveGraph() {
+    let oldInputGraphValue;
+
+    const url = 'visualization.dot';
+    const refreshInterval = 500;
+
+    // trigger a refresh by fetching an updated graph
+    setInterval(function () {
+      fetch(url).then(r => r.text()).then(dot => {
+        document.getElementById('errormsg').innerHTML = '';
+        if (oldInputGraphValue === dot) return;
+
+        oldInputGraphValue = dot;
+        drawGraph(dot);
+      }).catch(err => {
+        document.getElementById('errormsg').innerHTML =
+          'Failed to update plot. (' + err.message + ')';
+      });
+    }, refreshInterval);
+  }
+
+  function drawGraph(graph) {
+    let g = graphlibDot.read(graph);
+    // Set margins, if not present
+    if (!g.graph().hasOwnProperty("marginx") &&
+      !g.graph().hasOwnProperty("marginy")) {
+      g.graph().marginx = 20;
+      g.graph().marginy = 20;
+    }
+    g.graph().transition = function (selection) {
+      return selection.transition().duration(300);
+    };
+    // Render the graph into svg g
+    d3.select("svg g").call(render, g);
+  }
+  // Set up zoom support
+  const svg = d3.select("svg"),
+    inner = d3.select("svg g"),
+    zoom = d3.zoom().on("zoom", function () {
+      inner.attr("transform", d3.event.transform);
+    });
+  svg.call(zoom);
+
+  // Create and configure the renderer
+  const render = dagreD3.render();
+
+  let isClient = false;
+  isClient = true;
+
+  if (isClient) {
+    // Mark all nodes and their edges as active
+    cssRules = document.styleSheets[0].cssRules;
+    cssRules[3].style.opacity = 1;
+    cssRules[4].style.opacity = 1;
+
+    let graph;
+    graph = `digraph  {
+0 [class="start active", fillcolor=green, fontsize=12, label=START, style=filled];
+"-1" [class=end, fillcolor=red, fontsize=12, label=END, style=filled];
+1 [class="", fontsize=12, label=utter_introduction];
+2 [class="", fontsize=12, label=utter_introduction_r2];
+3 [class="", fontsize=12, label=action_choice_two];
+4 [class="", fontsize=12, label=utter_ask_type_of_student];
+5 [class="", fontsize=12, label=action_searchrecurringstudent];
+6 [class="", fontsize=12, label=utter_current_student];
+7 [class="", fontsize=12, label=utter_great];
+8 [class="", fontsize=12, label=utter_ask1];
+9 [class="", fontsize=12, label=action_FAFSA];
+10 [class="", fontsize=12, label=utter_financial_aid];
+11 [class="", fontsize=12, label=utter_ask2];
+12 [class="", fontsize=12, label=action_Eenrollment];
+13 [class="", fontsize=12, label=utter_enrollment];
+14 [class="", fontsize=12, label=utter_ask3];
+15 [class="", fontsize=12, label=action_view_cs_course];
+16 [class="", fontsize=12, label=utter_computerscience_option];
+17 [class="", fontsize=12, label=utter_classes_summer_20201];
+18 [class="", fontsize=12, label=action_view_summer20202];
+19 [class="", fontsize=12, label=utter_thank_you_uprogram];
+20 [class="", fontsize=12, label=utter_goodbye];
+21 [class="", fontsize=12, label=action_restart];
+45 [class="", fontsize=12, label=utter_ask2];
+67 [class="", fontsize=12, label=utter_classes_spring_2020];
+68 [class="", fontsize=12, label=action_view_spring20202];
+89 [class="", fontsize=12, label=action_view_spring2020];
+110 [class="", fontsize=12, label=action_view_spring20203];
+131 [class="", fontsize=12, label=action_view_summer2020];
+164 [class="", fontsize=12, label=action_campus_info];
+165 [class="", fontsize=12, label=utter_campus_info];
+166 [class="", fontsize=12, label=action_oncampus_tour];
+180 [class="", fontsize=12, label=action_employment];
+188 [class="", fontsize=12, label=utter_bored];
+202 [class="", fontsize=12, label=action_campusmap];
+210 [class="", fontsize=12, label=action_searchincomingstudent];
+211 [class="", fontsize=12, label=utter_future_student];
+212 [class="", fontsize=12, label=utter_future_student_r2];
+213 [class="", fontsize=12, label=utter_future_student_r3];
+214 [class="", fontsize=12, label=action_search_graduateprogram];
+215 [class="", fontsize=12, label=utter_graduate];
+216 [class="", fontsize=12, label=utter_graduate_program_options];
+217 [class="", fontsize=12, label=action_graduatedd_program];
+218 [class="", fontsize=12, label=utter_grad_option_program];
+219 [class="", fontsize=12, label=action_grad_prog_yes];
+220 [class="", fontsize=12, label=utter_grad_requirements];
+221 [class="", fontsize=12, label=action_grad_req_yes];
+222 [class="", fontsize=12, label=utter_graduate_ask_school];
+223 [class="", fontsize=12, label=action_gradinfo_yes];
+224 [class="", fontsize=12, label=utter_grad_ask_steps];
+225 [class="", fontsize=12, label=action_grad_steps_apply_yes];
+242 [class="", fontsize=12, label=action_grad_prog_no];
+261 [class="", fontsize=12, label=action_grad_req_no];
+282 [class="", fontsize=12, label=action_gradinfo_no];
+305 [class="", fontsize=12, label=action_grad_steps_apply_no];
+317 [class="", fontsize=12, label=action_search_undergraduateprogram];
+318 [class="", fontsize=12, label=utter_undergraduate];
+319 [class="", fontsize=12, label=utter_undergraduate_program_options];
+320 [class="", fontsize=12, label=action_display_undergradinfo];
+321 [class="", fontsize=12, label=utter_option_program];
+322 [class="", fontsize=12, label=action_prog_yes];
+323 [class="", fontsize=12, label=utter_program_information];
+324 [class="", fontsize=12, label=utter_art_loc];
+325 [class="", fontsize=12, label=utter_art_program];
+326 [class="", fontsize=12, label=utter_curious_req];
+327 [class="", fontsize=12, label=action_pro_req_yes];
+328 [class="", fontsize=12, label=utter_ask_school];
+329 [class="", fontsize=12, label=action_school_yes];
+330 [class="", fontsize=12, label=utter_ask_steps];
+331 [class="", fontsize=12, label=action_steps_apply_yes];
+353 [class="", fontsize=12, label=action_pro_req_no];
+370 [class="", fontsize=12, label=action_prog_no];
+394 [class="", fontsize=12, label=action_school_no];
+402 [class="", fontsize=12, label=utter_sad];
+428 [class="", fontsize=12, label=action_steps_apply_no];
+447 [class="", fontsize=12, label=utter_business_admin_description];
+448 [class="", fontsize=12, label=utter_business_admin];
+545 [class="", fontsize=12, label=utter_comp_sci];
+546 [class="", fontsize=12, label=utter_comp_sci_req];
+606 [class="", fontsize=12, label=utter_lazy];
+638 [class="", fontsize=12, label=action_choice_one];
+639 [class="", fontsize=12, label=utter_menu];
+644 [class="", fontsize=12, label=utter_lead_q1];
+645 [class="", fontsize=12, label=lead_form_p1];
+646 [class="", fontsize=12, label=lead_form_p2];
+647 [class="", fontsize=12, label=lead_form_p3];
+648 [class="", fontsize=12, label=utter_lead_q3];
+649 [class="", fontsize=12, label=utter_lead_q4];
+650 [class="", fontsize=12, label=utter_lead_q5];
+675 [class="", fontsize=12, label=action_default_fallback];
+789 [class=intent, fillcolor=lightblue, label=hey, shape=rect, style=filled];
+790 [class=intent, fillcolor=lightblue, label="am I talking to a bot?", shape=rect, style=filled];
+791 [class=intent, fillcolor=lightblue, label=text, shape=rect, style=filled];
+792 [class=intent, fillcolor=lightblue, label="I am selecting payloads", shape=rect, style=filled];
+793 [class=intent, fillcolor=lightblue, label="I'm an ongoing graduate student", shape=rect, style=filled];
+794 [class=intent, fillcolor=lightblue, label="bored, please entertain me", shape=rect, style=filled];
+795 [class=intent, fillcolor=lightblue, label="I'm a incoming master's student", shape=rect, style=filled];
+796 [class=intent, fillcolor=lightblue, label="I want to cry", shape=rect, style=filled];
+797 [class=intent, fillcolor=lightblue, label="Don't feel like doing anything right know", shape=rect, style=filled];
+798 [class=intent, fillcolor=lightblue, label="I'm good, thanks", shape=rect, style=filled];
+799 [class=intent, fillcolor=lightblue, label="yes, I want to know more", shape=rect, style=filled];
+800 [class=intent, fillcolor=lightblue, label="financial aid", shape=rect, style=filled];
+801 [class=intent, fillcolor=lightblue, label="I want to see what things the campus has campus", shape=rect, style=filled];
+802 [class=intent, fillcolor=lightblue, label="I have a question about enrollment", shape=rect, style=filled];
+803 [class=intent, fillcolor=lightblue, label="I want to know more over another subject", shape=rect, style=filled];
+804 [class=intent, fillcolor=lightblue, label="I need to ask you something else", shape=rect, style=filled];
+805 [class=intent, fillcolor=lightblue, label="I don't have anymore questions", shape=rect, style=filled];
+806 [class=intent, fillcolor=lightblue, label="I'm looking for enrollment", shape=rect, style=filled];
+807 [class=intent, fillcolor=lightblue, label="I need to ask you something else", shape=rect, style=filled];
+808 [class=intent, fillcolor=lightblue, label="Can I know more about something else?", shape=rect, style=filled];
+809 [class=intent, fillcolor=lightblue, label=thanks, shape=rect, style=filled];
+810 [class=intent, fillcolor=lightblue, label="looking for comp science", shape=rect, style=filled];
+811 [class=intent, fillcolor=lightblue, label="I want to view the classes in Summer 2020", shape=rect, style=filled];
+812 [class=intent, fillcolor=lightblue, label="I want to view the classes for Spring 2020", shape=rect, style=filled];
+813 [class=intent, fillcolor=lightblue, label="I want to see the summer courses for csc 501", shape=rect, style=filled];
+814 [class=intent, fillcolor=lightblue, label="csc 500", shape=rect, style=filled];
+815 [class=intent, fillcolor=lightblue, label=bye, shape=rect, style=filled];
+816 [class=intent, fillcolor=lightblue, label="I have am looking into financial aid", shape=rect, style=filled];
+817 [class=intent, fillcolor=lightblue, label="csc 585", shape=rect, style=filled];
+818 [class=intent, fillcolor=lightblue, label="I want to see the csc 590", shape=rect, style=filled];
+819 [class=intent, fillcolor=lightblue, label="csc 582", shape=rect, style=filled];
+820 [class=intent, fillcolor=lightblue, label="I want to see campus tour", shape=rect, style=filled];
+821 [class=intent, fillcolor=lightblue, label="I want to see some employment", shape=rect, style=filled];
+822 [class=intent, fillcolor=lightblue, label="I want to see the campus map", shape=rect, style=filled];
+823 [class=intent, fillcolor=lightblue, label="Tell me more about the grad program", shape=rect, style=filled];
+824 [class=intent, fillcolor=lightblue, label="Tell me over the  undergrad program", shape=rect, style=filled];
+825 [class=intent, fillcolor=lightblue, label="I don't know anything about the graduate program", shape=rect, style=filled];
+826 [class=intent, fillcolor=lightblue, label="I am going to select Yupp", shape=rect, style=filled];
+827 [class=intent, fillcolor=lightblue, label=Noope, shape=rect, style=filled];
+828 [class=intent, fillcolor=lightblue, label="I am gonna view the requirements Yas", shape=rect, style=filled];
+829 [class=intent, fillcolor=lightblue, label="I am not gonna view the grad requirements Nopee", shape=rect, style=filled];
+830 [class=intent, fillcolor=lightblue, label=Si, shape=rect, style=filled];
+831 [class=intent, fillcolor=lightblue, label=Nay, shape=rect, style=filled];
+832 [class=intent, fillcolor=lightblue, label=yasss, shape=rect, style=filled];
+833 [class=intent, fillcolor=lightblue, label=nooooo, shape=rect, style=filled];
+834 [class=intent, fillcolor=lightblue, label="Tell me more about the undergrad program", shape=rect, style=filled];
+835 [class=intent, fillcolor=lightblue, label="I am gonna choose Of Course", shape=rect, style=filled];
+836 [class=intent, fillcolor=lightblue, label="I can't, Of Course Not", shape=rect, style=filled];
+837 [class=intent, fillcolor=lightblue, label="studio art", shape=rect, style=filled];
+838 [class=intent, fillcolor=lightblue, label="business administration: accounting concentration", shape=rect, style=filled];
+839 [class=intent, fillcolor=lightblue, label="computer science", shape=rect, style=filled];
+840 [class=intent, fillcolor=lightblue, label=Indeed, shape=rect, style=filled];
+841 [class=intent, fillcolor=lightblue, label="Totally, Definately Not", shape=rect, style=filled];
+842 [class=intent, fillcolor=lightblue, label=Yessss, shape=rect, style=filled];
+843 [class=intent, fillcolor=lightblue, label=Nooo, shape=rect, style=filled];
+844 [class=intent, fillcolor=lightblue, label="I would like to know more on the Steps yes to apply", shape=rect, style=filled];
+845 [class=intent, fillcolor=lightblue, label="Steps no", shape=rect, style=filled];
+846 [class=intent, fillcolor=lightblue, label="University Printing Services", shape=rect, style=filled];
+847 [class=intent, fillcolor=lightblue, label=fine, shape=rect, style=filled];
+848 [class=intent, fillcolor=lightblue, label=no, shape=rect, style=filled];
+0 -> 789  [class="", key=0];
+0 -> 790  [class="", key=0];
+1 -> 2  [class="", key=NONE, label=""];
+2 -> 791  [class="", key=0];
+2 -> 792  [class="", key=0];
+3 -> 4  [class="", key=NONE, label=""];
+4 -> 793  [class="", key=0];
+4 -> 794  [class="", key=0];
+4 -> 795  [class="", key=0];
+4 -> 796  [class="", key=0];
+4 -> 797  [class="", key=0];
+5 -> 6  [class="", key=NONE, label=""];
+6 -> 798  [class="", key=0];
+7 -> 799  [class="", key=0];
+8 -> 800  [class="", key=0];
+8 -> 801  [class="", key=0];
+8 -> 802  [class="", key=0];
+9 -> 10  [class="", key=NONE, label=""];
+10 -> 803  [class="", key=0];
+10 -> 804  [class="", key=0];
+10 -> 805  [class="", key=0];
+11 -> 806  [class="", key=0];
+12 -> 13  [class="", key=NONE, label=""];
+13 -> 807  [class="", key=0];
+13 -> 808  [class="", key=0];
+13 -> 809  [class="", key=0];
+14 -> 810  [class="", key=0];
+15 -> 16  [class="", key=NONE, label=""];
+16 -> 811  [class="", key=0];
+16 -> 812  [class="", key=0];
+17 -> 813  [class="", key=0];
+17 -> 814  [class="", key=0];
+18 -> 19  [class="", key=NONE, label=""];
+19 -> 20  [class="", key=NONE, label=""];
+19 -> 815  [class="", key=0];
+20 -> 21  [class="", key=NONE, label=""];
+21 -> "-1"  [class="", key=NONE, label=""];
+45 -> 816  [class="", key=0];
+67 -> 817  [class="", key=0];
+67 -> 818  [class="", key=0];
+67 -> 819  [class="", key=0];
+68 -> 19  [class="", key=NONE, label=""];
+89 -> 19  [class="", key=NONE, label=""];
+110 -> 19  [class="", key=NONE, label=""];
+131 -> 19  [class="", key=NONE, label=""];
+164 -> 165  [class="", key=NONE, label=""];
+165 -> 820  [class="", key=0];
+165 -> 821  [class="", key=0];
+165 -> 822  [class="", key=0];
+166 -> 19  [class="", key=NONE, label=""];
+180 -> 19  [class="", key=NONE, label=""];
+188 -> 19  [class="", key=NONE, label=""];
+202 -> 19  [class="", key=NONE, label=""];
+210 -> 211  [class="", key=NONE, label=""];
+211 -> 212  [class="", key=NONE, label=""];
+212 -> 213  [class="", key=NONE, label=""];
+213 -> "-1"  [class="", key=NONE, label=""];
+213 -> 823  [class="", key=0];
+213 -> 824  [class="", key=0];
+214 -> 215  [class="", key=NONE, label=""];
+215 -> 216  [class="", key=NONE, label=""];
+216 -> 825  [class="", key=0];
+217 -> 218  [class="", key=NONE, label=""];
+218 -> 826  [class="", key=0];
+218 -> 827  [class="", key=0];
+219 -> 220  [class="", key=NONE, label=""];
+220 -> 828  [class="", key=0];
+220 -> 829  [class="", key=0];
+221 -> 222  [class="", key=NONE, label=""];
+222 -> 830  [class="", key=0];
+222 -> 831  [class="", key=0];
+223 -> 224  [class="", key=NONE, label=""];
+224 -> 832  [class="", key=0];
+224 -> 833  [class="", key=0];
+225 -> 19  [class="", key=NONE, label=""];
+242 -> 19  [class="", key=NONE, label=""];
+261 -> 19  [class="", key=NONE, label=""];
+282 -> 19  [class="", key=NONE, label=""];
+305 -> 19  [class="", key=NONE, label=""];
+317 -> 318  [class="", key=NONE, label=""];
+318 -> 319  [class="", key=NONE, label=""];
+319 -> 834  [class="", key=0];
+320 -> 321  [class="", key=NONE, label=""];
+321 -> 835  [class="", key=0];
+321 -> 836  [class="", key=0];
+322 -> 323  [class="", key=NONE, label=""];
+323 -> 837  [class="", key=0];
+323 -> 838  [class="", key=0];
+323 -> 839  [class="", key=0];
+324 -> 325  [class="", key=NONE, label=""];
+325 -> 326  [class="", key=NONE, label=""];
+326 -> 840  [class="", key=0];
+326 -> 841  [class="", key=0];
+327 -> 328  [class="", key=NONE, label=""];
+328 -> 842  [class="", key=0];
+328 -> 843  [class="", key=0];
+329 -> 330  [class="", key=NONE, label=""];
+330 -> 844  [class="", key=0];
+330 -> 845  [class="", key=0];
+331 -> 19  [class="", key=NONE, label=""];
+353 -> 19  [class="", key=NONE, label=""];
+370 -> 19  [class="", key=NONE, label=""];
+394 -> 19  [class="", key=NONE, label=""];
+402 -> 19  [class="", key=NONE, label=""];
+428 -> 19  [class="", key=NONE, label=""];
+447 -> 448  [class="", key=NONE, label=""];
+448 -> 326  [class="", key=NONE, label=""];
+545 -> 546  [class="", key=NONE, label=""];
+546 -> 326  [class="", key=NONE, label=""];
+606 -> 19  [class="", key=NONE, label=""];
+638 -> 639  [class="", key=NONE, label=""];
+639 -> "-1"  [class="", key=NONE, label=""];
+639 -> 846  [class="", key=0];
+644 -> 645  [class="", key=NONE, label=""];
+645 -> 847  [class="", key=0];
+645 -> 848  [class="", key=0];
+646 -> 647  [class="", key=NONE, label=""];
+647 -> 648  [class="", key=NONE, label=""];
+648 -> 649  [class="", key=NONE, label=""];
+649 -> 650  [class="", key=NONE, label=""];
+650 -> 19  [class="", key=NONE, label=""];
+675 -> "-1"  [class="", key=NONE, label=""];
+789 -> 1  [class="", key=0];
+790 -> 675  [class="", key=0];
+791 -> 3  [class="", key=0];
+792 -> 638  [class="", key=0];
+793 -> 5  [class="", key=0];
+794 -> 188  [class="", key=0];
+795 -> 210  [class="", key=0];
+796 -> 402  [class="", key=0];
+797 -> 606  [class="", key=0];
+798 -> 7  [class="", key=0];
+799 -> 8  [class="", key=0];
+800 -> 9  [class="", key=0];
+801 -> 164  [class="", key=0];
+802 -> 12  [class="", key=0];
+803 -> 11  [class="", key=0];
+804 -> 14  [class="", key=0];
+805 -> 19  [class="", key=0];
+806 -> 12  [class="", key=0];
+807 -> 14  [class="", key=0];
+808 -> 45  [class="", key=0];
+809 -> 19  [class="", key=0];
+810 -> 15  [class="", key=0];
+811 -> 17  [class="", key=0];
+812 -> 67  [class="", key=0];
+813 -> 18  [class="", key=0];
+814 -> 131  [class="", key=0];
+815 -> 20  [class="", key=0];
+816 -> 9  [class="", key=0];
+817 -> 68  [class="", key=0];
+818 -> 89  [class="", key=0];
+819 -> 110  [class="", key=0];
+820 -> 166  [class="", key=0];
+821 -> 180  [class="", key=0];
+822 -> 202  [class="", key=0];
+823 -> 214  [class="", key=0];
+824 -> 317  [class="", key=0];
+825 -> 217  [class="", key=0];
+826 -> 219  [class="", key=0];
+827 -> 242  [class="", key=0];
+828 -> 221  [class="", key=0];
+829 -> 261  [class="", key=0];
+830 -> 223  [class="", key=0];
+831 -> 282  [class="", key=0];
+832 -> 225  [class="", key=0];
+833 -> 305  [class="", key=0];
+834 -> 320  [class="", key=0];
+835 -> 322  [class="", key=0];
+836 -> 370  [class="", key=0];
+837 -> 324  [class="", key=0];
+838 -> 447  [class="", key=0];
+839 -> 545  [class="", key=0];
+840 -> 327  [class="", key=0];
+841 -> 353  [class="", key=0];
+842 -> 329  [class="", key=0];
+843 -> 394  [class="", key=0];
+844 -> 331  [class="", key=0];
+845 -> 428  [class="", key=0];
+846 -> 644  [class="", key=0];
+847 -> 646  [class="", key=0];
+848 -> 647  [class="", key=0];
+}
+`;
+    drawGraph(graph);
+  } else {
+    serveGraph();
+  }
+
+
+</script>
+</body>
+</html>

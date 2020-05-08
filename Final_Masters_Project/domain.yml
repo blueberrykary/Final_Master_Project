@@ -1,36 +1,81 @@
+## Karen Salinas
+## CSC 590
+## All code implemnted by Karen Salinas with the help
+## of Rasa research, resources in Rasa's forum, stackoverflow
+## and youtube videos to approach the overall development of the program
+## and use of software engineering methods to accomplish the overall design
+## and structure of the program
+
 session_config:
-  session_expiration_time: 60.0
+  session_expiration_time: 60
   carry_over_slots_to_new_session: true
+##============================================================================##
+##============================================================================##
+##===================================INTENTS==================================##
 intents:
 - greet
 - goodbye
-- affirm
-- deny
-- mood_great
-- mood_unhappy
+- choice_payloads
+- choice_text
+- student_type_two
+- student_type_one
+- choose_incoming_undergrad_program
+- choose_incoming_grad_program
+- undergrad_programs_info
+- accept
+- reject
+- begin_lead
+- help_inq
+- select_program_details_no
+- select_program_details_yes
+- select_requirements_yes
+- select_requirements_no
+- select_school_info_yes
+- select_school_info_no
+- select_stepstoapply_yes
+- select_stepstoapply_no
+- select_grad_program_details_yes
+- select_grad_program_details_no
+- select_grad_requirements_yes
+- select_grad_requirements_no
+- select_gradschool_yes
+- select_gradschool_no
+- select_gradsteps_yes
+- select_gradsteps_no
+- good_thanks
+- yes_ido
+- grad_program_info
+- financial_aid_application
+- university_enrollment
+- on_campus
+- on_campus_tour
+- campus_map
+- campus_employment
+- art
+- business_admin
+- computer_science
+- course_description
+- Spring2020
+- Summer2020
+- courses_spring2020
+- courses_spring20201
+- courses_spring20202
+- ask_a_question
+- no_more_ques
+- courses_summer2020
+- courses_summer20201
+# - agree
+# - disagree
 - bot_challenge
-- current_student
-- future_student
-- instructor
-- search_student_one
-- search_student_two
-- search_instruct
-- go_back
-- links
-- links2
-- links3
-- links4
-- links5
-- schedule_appointment
-- University
-- CompSci
-- By_Major
-- back
+- bored
+- sad
+- lazy
+##============================================================================##
+##============================================================================##
+##============================================================================##
+##=============================ENTITIES=======================================##
 entities:
-- stud_one
 - student_num_one
-- stud_two
-- instruct
 - student_num_two
 - instruct_one
 - go
@@ -52,13 +97,233 @@ entities:
 - school
 - major
 - by_maj
+- choice_one
+- c_one
+- choice
+- choice_two
+- student_incoming
+- student_recurr
+- student
+- iinfo
+- rinfo
+- uprogram
+- uprograms
+- gprogram
+- gprograms
+- program_undergrad
+- program_undergrad_info
+- program_school_info
+- program_under_deadline
+- uprog_info
+- uprog_iinfo
+- uprog_req
+- uprog_requirements
+- uschool_info
+- uschool_iinfo
+- uprog_apply
+- uprogram_apply
+- uprog_wapply
+- uprogram_wapply
+- uprog_dline
+- uprogram_deadline
+- inquiry
+- details
+- timeline
+- name
+- email
+- phone
+- program_graduate
+- program_details_yes
+- program_details_no
+- program_yes
+- program_no
+- prog_yes
+- prog_no
+- program_requirement_details_yes
+- program_requirement_details_no
+- program_req_yes
+- program_req_no
+- prog_req_yes
+- prog_req_no
+- school_info_yes
+- school_info_no
+- schoolinfo_no
+- schooli_no
+- schoolinfo_yes
+- schooli_yes
+- steps_apply_yes
+- steps_apply_no
+- steps_app_yes
+- steps_app_no
+- steps_yes
+- steps_no
+- graduate_program_details
+- graduate_program
+- program_masters
+- grad_program_info
+- grad_program
+- program_grad_details_yes
+- graduate_prog_yes
+- grad_prog_yes
+- program_grad_details_no
+- grad_prog_no
+- graduate_prog_no
+- program_gradrequirement_details_yes
+- program_gradrequirement_details_no
+- graduate_progreq_yes
+- grad_progreq_yes
+- graduate_progreq_no
+- grad_progreq_no
+- view_gradschool_yes
+- view_gradschool_no
+- graduateinfo_yes
+- graduateinfo_no
+- gradinfo_yes
+- gradinfo_no
+- view_grad_steps_yes
+- view_grad_steps_no
+- graduatesteps_app_yes
+- gradsteps_yes
+- graduatesteps_app_no
+- gradsteps_no
+- FAFSA_APP
+- fafsa_appp
+- fafsa_application
+- uni_enroll
+- university_enroll
+- unii_enrollment
+- campus_CSUDH
+- campus_information
+- campus_info
+- campus_tour_CSUDH
+- on_campus_tour_info
+- campus_tour_info
+- campus_map_CSUDH
+- campusMapCSUDH
+- campus_mapCSUDH
+- campus_employment_CSUDH
+- campus_employment_stu
+- campus_employment
+- course
+- getting_course
+- course_start
+- course_end
+- spring_2020_course1
+- spring_c1
+- spring_2020c1
+- spring_2020_course2
+- spring_c2
+- spring_2020c2
+- spring_2020_course3
+- spring_c3
+- spring_2020c3
+- summer_2020_course1
+- summer_2020_course2
+- summer_c1
+- summer_c2
+- summer_2020c1
+- summer_2020c2
+
+##============================================================================##
+##============================================================================##
+##============================================================================##
+##==================================SLOTS=====================================##
 slots:
   Appt:
     type: text
+  FAFSA_APP:
+    type: text
   by_maj:
+    type: text
+  c_one:
+    type: text
+  campusMapCSUDH:
+    type: text
+  campus_CSUDH:
+    type: text
+  campus_employment:
+    type: text
+  campus_employment_CSUDH:
+    type: text
+  campus_employment_stu:
+    type: text
+  campus_info:
+    type: text
+  campus_information:
+    type: text
+  campus_mapCSUDH:
+    type: text
+  campus_map_CSUDH:
+    type: text
+  campus_tour_CSUDH:
+    type: text
+  campus_tour_info:
+    type: text
+  choice:
+    type: text
+  choice_one:
+    type: text
+  choice_two:
+    type: text
+  details:
+    type: unfeaturized
+    auto_fill: false
+  email:
+    type: unfeaturized
+    auto_fill: false
+  fafsa_application:
+    type: text
+  fafsa_appp:
     type: text
   go:
     type: text
+  gprogram:
+    type: text
+  gprograms:
+    type: text
+  grad_prog_no:
+    type: text
+  grad_prog_yes:
+    type: text
+  grad_program:
+    type: text
+  grad_program_info:
+    type: text
+  grad_progreq_no:
+    type: text
+  grad_progreq_yes:
+    type: text
+  gradinfo_no:
+    type: text
+  gradinfo_yes:
+    type: text
+  gradsteps_no:
+    type: text
+  gradsteps_yes:
+    type: text
+  graduate_prog_no:
+    type: text
+  graduate_prog_yes:
+    type: text
+  graduate_program_details:
+    type: text
+  graduate_progreq_no:
+    type: text
+  graduate_progreq_yes:
+    type: text
+  graduateinfo_no:
+    type: text
+  graduateinfo_yes:
+    type: text
+  graduatesteps_app_no:
+    type: text
+  graduatesteps_app_yes:
+    type: text
+  iinfo:
+    type: text
+  inquiry:
+    type: unfeaturized
+    auto_fill: false
   instruct:
     type: text
   instruct_one:
@@ -75,6 +340,62 @@ slots:
     type: text
   major:
     type: text
+  name:
+    type: unfeaturized
+    auto_fill: false
+  on_campus_tour_info:
+    type: text
+  phone:
+    type: unfeaturized
+    auto_fill: false
+  prog_no:
+    type: text
+  prog_req_no:
+    type: text
+  prog_req_yes:
+    type: text
+  prog_yes:
+    type: text
+  program_details_no:
+    type: text
+  program_details_yes:
+    type: text
+  program_grad_details_no:
+    type: text
+  program_grad_details_yes:
+    type: text
+  program_gradrequirement_details_no:
+    type: text
+  program_gradrequirement_details_yes:
+    type: text
+  program_graduate:
+    type: text
+  program_masters:
+    type: text
+  program_no:
+    type: text
+  program_req_no:
+    type: text
+  program_req_yes:
+    type: text
+  program_requirement_details_no:
+    type: text
+  program_requirement_details_yes:
+    type: text
+  program_school_info:
+    type: text
+  program_under_deadline:
+    type: text
+  program_undergrad:
+    type: text
+  program_undergrad_apply:
+    type: text
+  program_undergrad_info:
+    type: text
+  program_undergrad_req:
+    type: text
+  program_yes:
+    type: text
   redirected:
     type: text
   redirected2:
@@ -85,94 +406,693 @@ slots:
     type: text
   redirected5:
     type: text
+  rinfo:
+    type: text
   sched_appointment:
     type: text
-  stud_one:
+  school_info_no:
     type: text
-  stud_two:
+  school_info_yes:
+    type: text
+  schooli_no:
+    type: text
+  schooli_yes:
+    type: text
+  schoolinfo_no:
+    type: text
+  schoolinfo_yes:
+    type: text
+  steps_app_no:
+    type: text
+  steps_app_yes:
+    type: text
+  steps_apply_no:
+    type: text
+  steps_apply_yes:
+    type: text
+  steps_no:
+    type: text
+  steps_yes:
+    type: text
+  student_incoming:
     type: text
   student_num_one:
     type: text
   student_num_two:
     type: text
+  student_recurr:
+    type: text
+  timeline:
+    type: unfeaturized
+    auto_fill: false
   uni:
+    type: text
+  uni_enroll:
+    type: text
+  unii_enrollment:
     type: text
   universities:
     type: text
+  university_enroll:
+    type: text
+  uprog_apply:
+    type: text
+  uprog_dline:
+    type: text
+  uprog_iinfo:
+    type: text
+  uprog_info:
+    type: text
+  uprog_req:
+    type: text
+  uprog_requirements:
+    type: text
+  uprog_wapply:
+    type: text
+  uprogram:
+    type: text
+  uprogram_apply:
+    type: text
+  uprogram_deadline:
+    type: text
+  uprogram_wapply:
+    type: text
+  uprograms:
+    type: text
+  uschool_iinfo:
+    type: text
+  uschool_info:
+    type: text
+  user_type:
+    type: categorical
+    values:
+    - future
+    - current
+  view_grad_steps_no:
+    type: text
+  view_grad_steps_yes:
+    type: text
+  view_gradschool_no:
+    type: text
+  view_gradschool_yes:
+    type: text
+  getting_course:
+    type: text
+  course_start:
+    type: text
+  course_end:
+    type: text
+  spring_2020_course1:
+    type: text
+  spring_c1:
+    type: text
+  spring_2020c1:
+    type: text
+  spring_2020_course2:
+    type: text
+  spring_c2:
+    type: text
+  spring_2020c2:
+    type: text
+  spring_2020_course3:
+    type: text
+  spring_c3:
+    type: text
+  spring_2020c3:
+    type: text
+  summer_2020_course1:
+    type: text
+  summer_2020_course2:
+    type: text
+  summer_c1:
+    type: text
+  summer_c2:
+    type: text
+  summer_2020c1:
+    type: text
+  summer_2020c2:
+    type: text
+
+##============================================================================##
+##============================================================================##
+##==============================RESPONSES=====================================##
 responses:
-  utter_greet:
-  - text: Welcome to CSUDH. I am CSUDHBot, here to help with information that you
-      may need. Which of the following applies to you?
+##============================================================================##
+##============================================================================##
+##============================================================================##
+##============================================================================##
+##==========================Introduction =====================================##
+## Introduction Message
+  utter_introduction:
+  - text: Welcome to CSUDH, I am CSUDHBot.
+## Introduction Message 2 to give options to user
+  utter_introduction_r2:
+  - text: I am here to help you navigate information you may have trouble finding
+      in the school's website. Would you like to ask me questions or are running into
+      problems that you may want to place some inquiries?
     buttons:
-    - title: Current Student
-      payload: /current_student{"stud_one":"current student"}
-    - title: Future Student
-      payload: /future_student{"stud_two":"future student"}
-    - title: Instructor
-      payload: /instructor{"instruct":"teacher"}
-  utter_next:
-  - text: Which of the following would you like to navigate?
+    - title: Ask Questions to CSUDHBot
+      payload: /choice_text{"choice":"text"}
+    - title: Inquiry
+      payload: /choice_payloads{"choice":"payloads"}
+##============================================================================##
+##============================================================================##
+##============================================================================##
+##==========================greet future student==============================##
+## Meant to greet the future student
+  # utter_greet_text:
+  # - text: Hi! You have selected {choice}. How are you today?
+##============================================================================##
+##============================================================================##
+##============================================================================##
+##========================Ask if they are recurring or incoming ==============##
+## Meant to ask student whether they are a recurring or incoming student. Depending on their response, they are redirected to a story.
+  utter_ask_type_of_student:
+  - text: Are you an recurring or incoming undergraduate or graduate student?
+##============================================================================##
+##============================================================================##
+##============================================================================##
+##==========================Incoming student message =============================##
+## Meant to ask student if they are intereted in undergraduate or graduate program. This redirects them to either the undergraduate or graduate storie(s).
+  utter_future_student_r3:
+  - text: Are you interested in learning more over our graduate or undergraduate programs?
+##============================================================================##
+##============================================================================##
+##============================================================================##
+##========================= Current student message ==========================##
+ ## Introduces the current student to the current student story.
+  utter_current_student:
+  - text: Hi {student_recurr}, how are you?
+##============================================================================##
+##============================================================================##
+##============================================================================##
+##===============incoming undergraduate starting point of story ==============##
+  utter_undergraduate:
+  - text: "CSUDH offers a wide selection of outstanding degrees that reflect today’s\
+      \ in-demand fields. \n\n Our degree programs offer a well-rounded curriculum\
+      \ that combines rigorous academics with a practical education. \n\n Would you\
+      \ be interested in learning over the academic requirements, types of programs,\
+      \ or the steps to apply to CSUDH?"
+##============================================================================##
+##============================================================================##
+##============================================================================##
+## This redirects incoming undergraduate student with an option, as an example of what could be expanded in the future if the administrator wishes for more buttons of options
+  utter_undergraduate_program_options:
+  - text: Select the following.
     buttons:
-    - title: MyCSUDH
-      payload: /links{"link":"current student"}
-      url: https://my.csudh.edu/psp/paaprd/EMPLOYEE/EMPL/h/?tab=PAPP_GUEST
-    - title: Student Email
-      payload: /links2{"link2":"current student"}
-    - title: Blackboard
-      payload: /links3{"link3":"Blackboard"}
-    - title: Academic Calendar
-      payload: /links4{"link4":"Academic Calendar"}
-    - title: Class Schedule
-      payload: /links5{"link5":"Class Schedule"}
-      value: https://cscadv.csudh.edu/
-    - title: Schedule Appointment
-      payload: /schedule_appointment{"Appt":"Schedule"}
-    - title: Go Back
-      payload: /greet
-  utter_schedule:
-  - text: schedule your appointments here
+    - title: Tell me more about the undergrad program
+      payload: /undergrad_programs_info{"program_undergrad_info":"undergrad program"}
+##============================================================================##
+##============================================================================##
+##============================================================================##
+## Meant for the incoming student opening
+  utter_future_student:
+  - text: Thank you {student_incoming} for your interest with CSUDH.
+
+  utter_future_student_r2:
+  - text: Applications for Spring 2020 are closed. The international undergraduate
+      deadline is on May 1st, 2020.
+    image: https://media0.giphy.com/media/mBw8vRgeK75MA9wICY/giphy.gif
+#=============================================================================##
+##============================================================================##
+##============================================================================##
+##============================================================================##
+## Utter options for programs for incoming undergraduate student and graduate student
+  utter_option_program:
+  - text: Would you like to know more details about the program?
     buttons:
-    - title: University
-      payload: /University{"school":"Universe"}
-    - title: By Major
-      payload: /By_Major{"school":"Major"}
-    - title: Go Back
-      payload: /current_student{"stud_one":"current student"}
-  utter_cheer_up:
-  - text: 'Here is something to cheer you up:'
-    image: https://i.imgur.com/nGF1K8f.jpg
-  utter_did_that_help:
-  - text: Did that help you?
-  utter_happy:
-  - text: Great, carry on!
+    - title: Yes
+      payload: /select_program_details_yes{"program_details_yes":"Of Course"}
+    - title: No
+      payload: /select_program_details_no{"program_details_no":"Of Course Not"}
+
+##=============================================================================##
+##============================================================================##
+##============================================================================##
+##============================================================================##
+##=======Utter Program Information used in Incoming Undergraduate Program======##
+  utter_program_information:
+  - text: These are a few of the programs offered at CSUDH
+    custom:
+      payload: quickReplies
+      data:
+        - title: Art
+          payload: /art
+        - title: Business Administration
+          payload: /business_admin
+        - title: Computer Science
+          payload: /computer_science
+
+  utter_art_loc:
+  - text: "Art Department Location \n\n Art Department located at Room A111 of La Corte Hall."
+    image: "file:///home/blueberrykary/Desktop/Final_Masters_Project/static/img/art_depart.png"
+
+  utter_art_program:
+  - text: "Art Design Option Program Details \n\n The Department of Art and Design programs at California State University, Dominguez Hills are characterized by a unique and close correlation among the Art History, Studio Art, and Design Options, and by a strong coordination among the different studio areas. \n\n These Options introduce students to potential careers in the art world as well as providing personal fulfillment through creative and scholarly endeavors. \n\n Although a minor is not required, those who foresee a career in art are encouraged to complete a minor in the Department of Art and Design. Some courses are offered in the evening to allow flexible schedules."
+
+  utter_business_admin_description:
+  - text: "The undergraduate program in Business Administration, which leads to a Bachelor of Science degree, is designed to accomplish two objectives. \n\n The first of these is to prepare students for lifelong professional careers in commerce, finance and industry, as well as for management careers in the public and not-for-profit sectors. A second objective is to provide students with the knowledge and skills needed to obtain professional, entry level positions in one functional area of the business enterprise, or in some particular field of business. \n\n After that, students must select a concentration. The following courses, or their approved transfer equivalents, are required of all candidates for this degree.
+Because most Business Administration course work completed over ten years ago is outdated, students must consult with an advisor in the Student Advisement and Service Center to ascertain whether courses taken ten or more years ago will need to be repeated. The Associate Dean in the College of Business Administration and Public Policy may waive the requirement to repeat outdated course work if there is evidence that student knowledge is current. Such evidence may consist of recent successful completion of more advanced course work in the specific discipline or satisfactory completion of designated national examinations. "
+  utter_business_admin:
+  - text: "Admission to the Business Administration major requires completion of all lower division Business Administration core courses with minimum grades of “C”. All new majors are classified as “pre-business majors” until the requirements are met. Upper division advanced and concentration courses are available only to “Business Administration” majors. Students should consult with an advisor in the Business Advisement Center for more information."
+
+  utter_comp_sci:
+  - text: "The curriculum is designed to provide preparation for professional careers in the areas of software design and applied computer science, as well as to give the necessary theoretical background for graduate study in the field and to allow a flexible response to a dynamic and growing profession. \n\n The required courses give students a firm foundation in the basic areas of computer science and related areas of mathematics, and a wide choice of electives allow them to tailor their program to their specific interests. \n\n The baccalaureate program (Bachelor of Science in Computer Science) is accredited by the Computer Science Accreditation Commission of the Accreditation Board for Engineering and Technology, 111 Market Place, Suite 1050, Baltimore, MD 21202-4012, (410) 347-7700. The programs accredited by the Commission of Accreditation Board for Engineering and Technology are accredited as separate and distinct from any other programs or kinds of accreditation."
+
+  utter_comp_sci_req:
+  - text: " Students entering the Computer Science program must complete the following. \n\n Earn an overall grade point average of 2.0 or better in courses taken outside of the department.\n\n Earn a grade of C or better in each course taken within the department. \n\n Earn a grade of C or better in all direct and indirect prerequisite courses listed in the catalog before advancing to the next level course in a sequence for English, Mathematics, and Science courses. \n\n Students must take capstone course CSC 492 at CSUDH."
+##============================================================================##
+##============================================================================##
+##============================================================================##
+##==============================================================================================================================================================================================##
+##==============================================================================================================================================================================================##
+## Steps for incoming undergraduate in requirements, school information, and steps to apply.
+  utter_curious_req:
+  - text: Would you like to know a bit more about the student requirements?
+    buttons:
+    - title: Yes
+      payload: /select_requirements_yes{"program_requirement_details_yes":"Indeed"}
+    - title: No
+      payload: /select_requirements_no{"program_requirement_details_yes":"Definately
+        Not"}
+
+  utter_ask_school:
+  - text: Would you like to know more over the school information?
+    buttons:
+    - title: Yes
+      payload: /select_school_info_yes{"school_info_yes":"Yessss"}
+    - title: No
+      payload: /select_school_info_no{"school_info_no":"Nooo"}
+
+  utter_ask_steps:
+  - text: Would you like to see the steps to applying to CSUDH?
+    buttons:
+    - title: Yes
+      payload: /select_stepstoapply_yes{"steps_apply_yes":"Steps yes"}
+    - title: No
+      payload: /select_stepstoapply_no{"steps_apply_no":"Steps no"}
+##==============================================================================##
+##============================================================================##
+##============================================================================##
+##============================================================================##
+  utter_thank_you_uprogram:
+  - text: Thank you for your interest at CSUDH! I hope I gave you the correct information!
+      😀
+
+  utter_okay:
+  - text: Okay great! Would you like to know what the requirements are?
+
+
+  utter_graduate_program_options:
+  - text: Which of the following would you like to explore?
+    buttons:
+    - title: Tell me more about the graduate program
+      payload: /grad_program_info{"program_masters":"graduate program"}
+
+  utter_grad_option_program:
+  - text: Would you like to view few of the programs offered at CSUDH?
+    buttons:
+    - title: Yes
+      payload: /select_grad_program_details_yes{"program_grad_details_yes":"Yupp"}
+    - title: No
+      payload: /select_grad_program_details_no{"program_grad_details_no":"Noope"}
+
+  utter_grad_requirements:
+  - text: Would you like to know a bit more about the graduate requirements?
+    buttons:
+    - title: Yes
+      payload: /select_grad_requirements_yes{"program_gradrequirement_details_yes":"Yas"}
+    - title: No
+      payload: /select_grad_requirements_no{"program_gradrequirement_details_no":"Nopee"}
+
+  utter_graduate_ask_school:
+  - text: Would you like to know a bit more about the graduate requirements?
+    buttons:
+    - title: Yes
+      payload: /select_gradschool_yes{"view_gradschool_yes":"Si"}
+    - title: No
+      payload: /select_gradschool_no{"view_gradschool_no":"Nay"}
+
+  utter_grad_ask_steps:
+  - text: Would you like to know a bit more about the graduate requirements?
+    buttons:
+    - title: Yes
+      payload: /select_gradsteps_yes{"view_grad_steps_yes":"yasss"}
+    - title: No
+      payload: /select_gradsteps_no{"view_grad_steps_no":"nooooo"}
+
+  utter_requirements:
+  - text: The following is the requirements contains
+    image: file:///home/blueberrykary/Desktop/Final_Masters_Project/static/img/reselibility1.png
+
+  utter_graduate:
+  - text: you are looking at graduate
+
+  utter_welcome_basic:
+  - text: welcome to future student
+
+  utter_welcome_premium:
+  - text: welcome to current student
+
+  # utter_information:
+  # - text: School Information
+  #   buttons:
+  #   - text: Help Desk
+  #     payload: /help_inq
+
+  utter_art_img:
+  - text: The art department is located at <iframe width="180" height="180" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAeAYpLBY6vo8ZSECeMadGx5Y9oLHcUw6s&q=CSUDH+LaCorte+Hall+(LCH)" allowfullscreen></iframe>
+
+##==============================================================================##
+##============================================================================##
+##============================================================================##
+##============================================================================##
+
+  utter_menu:
+  - text: Which of the following would you like to contact us over?
+    buttons:
+    - title: Accounts & Access
+      payload: /begin_lead
+    - title: Hardware & Software
+      payload: /begin_lead
+    - title: IT Continuity Resources
+      payload: /begin_lead
+    - title: Network
+      payload: /begin_lead
+    - title: Teaching & Learning
+      payload: /begin_lead
+    - title: TV & Media Production
+      payload: /begin_lead
+    - title: University Printing Services
+
+  utter_lead_q1:
+  - text: Thank you, let's go to the next step.
+
+  utter_ask_inquiry:
+  - text: What would be your inquiry?
+
+  utter_more_details:
+  - text: Do you wish to provide further details?
+    buttons:
+    - title: "Yes"
+      payload: "yes"
+    - title: "No"
+      payload: "no"
+
+  utter_ask_details:
+  - text: Please type in further details over your inquiry here.
+
+  utter_ask_timeline:
+  - text: When do you wish to be contacted?
+    buttons:
+    - title: Immediately
+      payload: Immediately
+    - title: Next Week
+      payload: Next Week
+    - title: Until the next available time
+      payload: Until the next available time
+
+
+  utter_ask_name:
+  - text: May I know your name?
+
+
+  utter_ask_email:
+  - text: Could you provide me with your email?
+
+
+  utter_ask_phone:
+  - text: Can I have your phone number?
+
+
+  utter_lead_q2:
+  - text: Thanks for answering all our questions and being this patient.!
+
+
+  utter_lead_q3:
+  - text: "The information provided to contact you is: \n - inquiry: {inquiry}\n -\
+      \ details: {details}\n - timeline: {timeline}\n - name: {name}\n - email: {email}\n\
+      \ - phone: {phone}"
+
+
+
+  utter_lead_q4:
+  - text: Our help desk will keep in touch with you over your inquiry soon.!
+
+
+  utter_lead_q5:
+  - text: In the meanwhile for anything, you can contact us at (310) 243-2500 or visit
+      our 24/7 Answers at [here](https://csudh.service-now.com/it?id=kb_view2)
+
+##==============================================================================##
+##============================================================================##
+##============================================================================##
+##============================================================================##
+
+  utter_campus_info:
+  - text: Some queries for campus
+    buttons:
+    - title: Campus Tour
+      payload: /on_campus_tour{"campus_tour_CSUDH":"campus tour"}
+    - title: Campus Map
+      payload: /campus_map{"campus_map_CSUDH":"campus map"}
+    - title: Student On-Campus Employement
+      payload: /campus_employment{"campus_employment_CSUDH":"employment"}
+
+
+  utter_enrollment:
+  - text: "The student enrollment distribution for Fall 2015"
+    custom:
+      payload: chart
+      data:
+        title: Fall 2015
+        labels:
+        - Undergraduate
+        - Graduate/PB
+        - High School Students
+        - Total
+        backgroundColor:
+        - "#36a2eb"
+        - "#ffcd56"
+        - "#ff6384"
+        - "#009688"
+        - "#c45850"
+        chartsData:
+        - 12562
+        - 2073
+        - 0
+        - 14635
+        chartType: pie
+        displayLegend: 'true'
+
+
+  utter_computerscience_option:
+  - text: "Select one of the semesters"
+    custom:
+      payload: quickReplies
+      data:
+      - title: Spring 2020
+        payload: /Spring2020
+      - title: Summer 2020
+        payload: /Summer2020
+
+
+  utter_classes_spring_2020:
+  - text: These are a list of Classes in computer science
+    buttons:
+    - title: CSC 582
+      payload: /courses_spring20202{"spring_2020_course3":"csc 582"}
+    - title: CSC 585
+      payload: /courses_spring20201{"spring_2020_course2":"csc 585"}
+    - title: CSC 590
+      payload: /courses_spring2020{"spring_2020_course1":"csc 590"}
+
+  utter_classes_summer_20201:
+  - text: "These are a list of Classes in computer science"
+    custom:
+      payload: quickReplies
+      data:
+      - title: CSC 500
+        payload: /courses_summer2020{"summer_2020_course1":"csc 500"}
+      - title: CSC 501
+        payload: /courses_summer20201{"summer_2020_course2":"csc 501"}
+
+  utter_school_info:
+  - text: school information image
+    image: "file:///home/blueberrykary/Desktop/Final_Masters_Project/static/img/art_depart.png"
+
+  utter_great:
+  - text: Great! I'm glad to hear. Do you have any questions?
+
+  utter_financial_aid:
+  - text: "The following is a further explanation on FAFSA types offered at CSUDH"
+    custom:
+        payload: "collapsible"
+        data:
+        - title: Grants
+          description: CSUDH offers a variety of grants, ranging from the Federal Pell Grant, TEACH Grants, State University Grants, and more.
+        - title: Work-Study
+          description: The Federal Work Study (FWS) Program provides funds to employ students (on-campus or off-campus) who qualify for financial aid. Students will be considered for an award by having submitted their FAFSA by the established deadline, having submitted any requested documents by their established deadline, and demonstrating financial need greater than $1,000. Students must be enrolled at least half-time to be considered for this program. Awards range from $1,000 to $4,000.
+        - title: Loan Programs
+          description: Contains a wide variety of grants ranging from the California Dream Loan, Parent Loans, and more.
+
+##=============================================================================##
+##=============================================================================##
+##=============================================================================##
+##=============================================================================##
+##=============================================================================##
+
+  utter_ask1:
+  - text: What would you be looking for today?
+  utter_ask2:
+  - text: What would be your other question?
+  utter_ask3:
+  - text: What would be your other question?
+
   utter_goodbye:
-  - text: Bye
-  utter_iamabot:
-  - text: I am a bot, powered by Rasa.
-  utter_view:
-  - text: one
-  - text: two
-  - text: three
+  - text: Goodbye
+
+  utter_default:
+  - text: I'm sorry, I was not able to understand you. Would you please try again?
+
+##============================================================================##
+##============================================================================##
+## Chit-Chat
+
+  utter_bored:
+  - text: Here is a video of Teddy the Toro in an Earthquake Drill
+    image: "https://media.giphy.com/media/UQmufdoqwUbVbgDr5U/giphy.gif"
+
+  utter_sad:
+  - text: Here is a funny gif to cheer you up!
+    image: "https://media.giphy.com/media/LZElUsjl1Bu6c/giphy.gif"
+
+  utter_lazy:
+  - text: Nooo, don't get lazy!! Get back to work! =)
+
+##============================================================================##
+##============================================================================##
+##============================================================================##
+##============================================================================##
+##===========================ACTIONS==========================================##
 actions:
-- utter_greet
-- utter_cheer_up
-- utter_did_that_help
-- utter_happy
+- utter_introduction
+- utter_introduction_r2
 - utter_goodbye
-- utter_iamabot
-- utter_view
-- action_search_student_one
-- action_search_student_two
 - action_search_instruct
-- utter_next
 - action_goback
 - action_goback2
 - action_goback3
 - action_goback4
 - action_goback5
-- utter_schedule
 - action_schedule_appt
 - action_schedule_university
 - action_schedule_major
-- action_compsci
-- utter_schedule_bymajor -->
+- action_choice_one
+- action_choice_two
+- action_hello_world
+- utter_ask_type_of_student
+- utter_welcome_premium
+- utter_welcome_basic
+- action_fetch_profile
+- action_searchincomingstudent
+- action_searchrecurringstudent
+- utter_future_student
+- utter_future_student_r2
+- utter_future_student_r3
+- utter_current_student
+- utter_undergraduate
+- utter_graduate
+- action_search_undergraduateprogram
+- action_search_graduateprogram
+- utter_undergraduate_program_options
+- utter_graduate_program_options
+- action_display_undergradinfo
+- utter_requirements
+- action_req
+- action_show
+- action_requirement_information
+- action_display_undergradreq
+- action_display_uschoolinfo
+- action_whento_apply
+- action_progdeadline
+- action_test
+- utter_menu
+- utter_more_details
+- utter_lead_q1
+- utter_lead_q2
+- utter_lead_q3
+- utter_lead_q4
+- utter_lead_q5
+- utter_program_information
+- utter_ask_inquiry
+- utter_ask_details
+- utter_ask_timeline
+- utter_ask_name
+- utter_ask_email
+- utter_ask_phone
+- utter_thank_you_uprogram
+- utter_curious_req
+- utter_okay
+- utter_option_program
+- utter_ask_school
+- utter_ask_steps
+- action_prog_no
+- action_prog_yes
+- action_pro_req_yes
+- action_pro_req_no
+- action_school_yes
+- action_school_no
+- action_steps_apply_yes
+- action_steps_apply_no
+- action_graduatedd_program
+- utter_grad_option_program
+- action_grad_prog_yes
+- action_grad_prog_no
+- utter_grad_requirements
+- action_grad_req_yes
+- action_grad_req_no
+- utter_graduate_ask_school
+- action_gradinfo_yes
+- action_gradinfo_no
+- utter_grad_ask_steps
+- action_grad_steps_apply_yes
+- action_grad_steps_apply_no
+- action_FAFSA
+- utter_ask3
+- action_Eenrollment
+- utter_ask2
+- action_campus_info
+- utter_campus_info
+- action_oncampus_tour
+- action_campusmap
+- action_employment
+- action_course
+- utter_great
+- utter_ask1
+- utter_enrollment
+- utter_financial_aid
+- utter_art_loc
+- utter_art_program
+- action_view_cs_course
+- utter_computerscience_option
+- utter_classes_summer_20201
+- utter_classes_spring_2020
+- action_view_spring2020
+- action_view_spring20202
+- action_view_spring20203
+- utter_business_admin
+- utter_business_admin_description
+- utter_comp_sci
+- utter_comp_sci_req
+- action_view_summer2020
+- action_view_summer20202
+
+##============================================================================##
+##============================================================================##
+##============================================================================##
+##================================FORMS=======================================##
+forms:
+- lead_form_p1
+- lead_form_p2
+- lead_form_p3

@@ -1,102 +1,100 @@
-<!-- <!DOCTYPE html>
+<!-- Credit to obtaining template from JiteshGaikwad on
+https://github.com/JiteshGaikwad/Chatbot-Widget,. Used many
+of his methods, but some were not working and opted out to
+ using some of his features.-->
 <html>
+
 <head>
-  <title> Chat widget</title>
-  <div id="webchat"/>
-  <body>
-    <script src="https://storage.googleapis.com/mrbot-cdn/webchat-latest.js"></script>
-    // Or you can replace latest with a specific version
-    <script>
-      WebChat.default.init({
-        selector: "#webchat",
-        customData: {"language": "en"}, // arbitrary custom data. Stay minimal as this will be added to the socket
-        socketUrl: "http://localhost:5005",
-        socketPath: "/socket.io/",
-        title: "demo bot",
-        subtitle: "Subtitle",
-      })
-    </script>
-  </body>
-  </html> -->
+    <title>Chatbot Widget</title>
 
-  <html>
-     <head>
-        <title>Chatbot Widget</title>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <!--Let browser know website is optimized for mobile-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:500&display=swap" rel="stylesheet">
 
-        <!--Import Google Icon Font-->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Raleway:500&display=swap" rel="stylesheet">
+    <!--Import Font Awesome Icon Font-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
 
-        <!--Import Font Awesome Icon Font-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-           integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <!--Import materialize.css-->
+    <link rel="stylesheet" type="text/css" href="static/css/materialize.min.css">
 
-        <!--Import materialize.css-->
-        <link rel="stylesheet" type="text/css" href="static/css/materialize.min.css">
+    <!--Main css-->
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!--Main css-->
-        <link rel="stylesheet" type="text/css" href="static/css/style.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 
-     </head>
-     <body>
-        <div class="container">
-           <!-- Modal for rendering the charts, declare this if you want to render charts,
-           else you remove the modal -->
-           <div id="modal1" class="modal">
-              <canvas id="modal-chart"></canvas>
-           </div>
+<body>
+    <div class="container">
 
-          <!--chatbot widget -->
-           <div class="widget">
-              <div class="chat_header">
-
-                 <!--Add the name of the bot here -->
-                 <span class="chat_header_title">CSUDH Bot</span>
-                 <span class="dropdown-trigger" href='#' data-target='dropdown1'>
-                    <i class="material-icons">
-                    more_vert
-                    </i>
-                 </span>
-
-                 <!-- Dropdown menu-->
-                 <ul id='dropdown1' class='dropdown-content'>
-                    <li><a href="#" id="clear">Clear</a></li>
-                    <li><a href="#" id="restart">Restart</a></li>
-                    <li><a href="#" id="close" >Close</a></li>
-                 </ul>
-              </div>
-
-              <!--Chatbot contents goes here -->
-              <div class="chats" id="chats">
-                 <div class="clearfix"></div>
-              </div>
-
-              <!--keypad for user to type the message -->
-              <div class="keypad">
-                 <textarea id="userInput" placeholder="Type a message..." class="usrInput"></textarea>
-                 <div id="sendButton"><i class="fa fa-paper-plane" aria-hidden="true"></i></div>
-              </div>
-           </div>
-
-           <!--bot profile-->
-           <div class="profile_div" id="profile_div">
-              <img class="imgProfile" src="static/img/DominguezToros.png" />
-           </div>
+        <!-- Modal for rendering the charts, declare this if you want to render charts,
+         else you remove the modal -->
+        <div id="modal1" class="modal">
+            <canvas id="modal-chart"></canvas>
         </div>
 
-        <!--JavaScript at end of body for optimized loading-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script type="text/javascript" src="static/js/materialize.min.js"></script>
+        <!--chatbot widget -->
+        <div class="widget">
+            <div class="chat_header">
 
-        <!--Main Script -->
-        <script type="text/javascript" src="static/js/script.js"></script>
+                <!--Add the name of the bot here -->
+                <span class="chat_header_title">CSUDHBot</span>
+                <span class="dropdown-trigger" href='#' data-target='dropdown1'>
+                  <i class="material-icons">
+                  more_vert
+                  </i>
+               </span>
 
-        <!--Chart.js Script -->
-        <script type="text/javascript" src="static/js/chart.min.js"></script>
+                <!-- Dropdown menu-->
+                <ul id='dropdown1' class='dropdown-content'>
+                    <li><a href="#" id="clear">Clear</a></li>
+                    <li><a href="#" id="restart">Restart</a></li>
+                    <li><a href="#" id="close">Close</a></li>
+                </ul>
+            </div>
 
-     </body>
-  </html>
+            <!--Chatbot contents goes here -->
+            <div class="chats" id="chats">
+                <div class="clearfix"></div>
+
+            </div>
+
+            <!--keypad for user to type the message -->
+            <div class="keypad">
+                <textarea id="userInput" placeholder="Type a message..." class="usrInput"></textarea>
+                <div id="sendButton"><i class="fa fa-paper-plane" aria-hidden="true"></i></div>
+            </div>
+        </div>
+
+        <!--bot profile-->
+        <div class="profile_div" id="profile_div">
+            <img class="imgProfile" src="static/img/DominguezToros.png" />
+        </div>
+
+        <!-- Bot pop-up intro -->
+        <div class="tap-target" data-target="profile_div">
+            <div class="tap-target-content">
+                <h5 class="white-text"> Hi there! 👋</h5>
+                <p class="white-text">I am CSUDHBot!</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="static/js/materialize.min.js"></script>
+
+    <!--Main Script -->
+    <script type="text/javascript" src="static/js/script.js"></script>
+
+    <!--Chart.js Script -->
+    <script type="text/javascript" src="static/js/chart.min.js"></script>
+
+    <iframe src = "https://www.csudh.edu/" width="100%" height="100%" </iframe>
+
+</body>
+
+</html>

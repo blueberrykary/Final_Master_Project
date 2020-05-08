@@ -1,6 +1,13 @@
 language: en
 pipeline: supervised_embeddings
 policies:
-- name: MemoizationPolicy
-- name: KerasPolicy
+- name: FormPolicy
+- name: AugmentedMemoizationPolicy
+- name: TEDPolicy
 - name: MappingPolicy
+
+## Many errors persisted when using the FallbackPolicy, such as "utter_custom", therefore opted out
+- name: FallbackPolicy
+  nlu_threshold: 0.4
+  core_threshold: 0.4
+  fallback_action_name: "action_default_fallback"
