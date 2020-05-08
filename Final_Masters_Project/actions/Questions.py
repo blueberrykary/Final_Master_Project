@@ -1,7 +1,7 @@
 # ## Karen Salinas
 # ## CSC 590
 # Questions that student may ask
-api_key = "AIzaSyAeAYpLBY6vo8ZSECeMadGx5Y9oLHcUw6s"
+api_key = "KEY"
 from typing import Dict, Text, Any, List, Union, Optional
 
 from rasa_sdk import Action, Tracker
@@ -149,7 +149,7 @@ class Action_Campus_Map(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         #school information slot
         campus_mapCSUDH = tracker.get_slot("campus_map_CSUDH")
-        # api_key = "AIzaSyAeAYpLBY6vo8ZSECeMadGx5Y9oLHcUw6s"
+        # api_key = "KEY"
         # url =  "https://maps.googleapis.com/maps/api/staticmap?"
         # location = input("Enter location: ")
         # center = location
@@ -166,7 +166,7 @@ class Action_Campus_Map(Action):
         #     'address':['CSUDH']
         #     })
         #
-        # gmaps_key = googlemaps.Client(key = "AIzaSyAeAYpLBY6vo8ZSECeMadGx5Y9oLHcUw6s")
+        # gmaps_key = googlemaps.Client(key = "KEY")
         #
         # df['Lat'] = None
         # df['Lon'] = None
@@ -183,7 +183,7 @@ class Action_Campus_Map(Action):
         #         lng = None
 
 
-        link = '<iframe width="180" height="180" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAeAYpLBY6vo8ZSECeMadGx5Y9oLHcUw6s&q=California+State+University+Dominguez+Hills,Carson+CA" allowfullscreen></iframe>'
+        link = '<iframe width="180" height="180" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=KEY&q=California+State+University+Dominguez+Hills,Carson+CA" allowfullscreen></iframe>'
 
         campusMapCSUDH = link
         #uttering message containing the response from slot
