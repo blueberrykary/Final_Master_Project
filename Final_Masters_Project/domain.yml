@@ -830,9 +830,7 @@ Because most Business Administration course work completed over ten years ago is
 
 
   utter_lead_q3:
-  - text: "The information provided to contact you is: \n - inquiry: {inquiry}\n -\
-      \ details: {details}\n - timeline: {timeline}\n - name: {name}\n - email: {email}\n\
-      \ - phone: {phone}"
+  - text: "The information provided to contact you is: <br/> - inquiry: {inquiry} <br/> -details: {details} <br/> - timeline: {timeline} <br/> - name: {name} <br/> - email: {email} <br/> - phone: {phone}"
 
 
 
