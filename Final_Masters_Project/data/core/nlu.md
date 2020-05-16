@@ -404,7 +404,6 @@
 - business administration: information systems concentration
 
 ## intent: computer_science
-- computer science
 - computer science and information systems
 - computer science and technology
 
